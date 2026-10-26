@@ -2,6 +2,14 @@
 setting showdebugoutput=false;
 
 if (cgi.request_method == "POST") {
+	// normally created by Server.cfc on server start, created here as a fallback
+	if (!structKeyExists(server, "mcpServer")) {
+		lock name="lucee-mcp-server-init" type="exclusive" timeout=60 {
+			if (!structKeyExists(server, "mcpServer")) {
+				server.mcpServer = new org.lucee.extension.mcp.MCPServer();
+			}
+		}
+	}
 	server.mcpServer.handle();
 	abort;
 }
@@ -12,8 +20,8 @@ tools = [
 	{ name: "get_lucee_function", args: "name",                                    desc: "FLD descriptor for a built-in Lucee function." },
 	{ name: "get_lucee_tag",      args: "name",                                    desc: "TLD descriptor for a Lucee tag." },
 	{ name: "search_lucee_docs",  args: "query, maxResults",                       desc: "Full-text search across functions, tags, and recipes." },
-	{ name: "parse_cfml_ast",     args: "source or path, mode, summary, maxDepth", desc: "Parse CFML source into an AST tree or compact summary." },
-	{ name: "query_cfml_ast",     args: "source or path, nodeType, name, line",    desc: "Find matching nodes in already-parsed CFML." }
+	{ name: "parse_cfml_ast",     args: "source, mode, summary, maxDepth",         desc: "Parse CFML source into an AST tree or compact summary." },
+	{ name: "query_cfml_ast",     args: "source, nodeType, name, line",            desc: "Find matching nodes in already-parsed CFML." }
 ];
 </cfscript>
 <!DOCTYPE html>
