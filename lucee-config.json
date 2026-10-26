@@ -8,23 +8,6 @@
             "inspectTemplate": "never"
         }
     ],
-    "extensions": [
-        {
-            "id": "B5059590-2112-49FB-AEDFB997252EDA18",
-            "maven": "org.lucee:mcp-server-extension:1.0.1.5",
-            "name": "MCP Server",
-            "version": "1.0.1.5"
-        },
-        {
-            "id": "EFDEB172-F52E-4D84-9CD1A1F561B3DFC8",
-            "maven": "org.lucee:lucene-search-extension:3.0.0.163",
-            "name": "Lucene Search",
-            "version": "3.0.0.163"
-        },
-        {
-            "maven": "org.lucee:esapi-extension:3.0.0.14"
-        }
-    ],
     "loggers": {
         "application": {
             "appender": "console",
